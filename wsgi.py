@@ -12,8 +12,21 @@ from pathlib import Path
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
-# Import the Flask application
-from app import app
+# Import the simplified Flask application
+try:
+    from app_simple import app
+except ImportError:
+    # Fallback to basic app if import fails
+    from flask import Flask, jsonify
+    app = Flask(__name__)
+    
+    @app.route('/')
+    def index():
+        return jsonify({
+            "message": "Smart Receipt Processor",
+            "status": "running",
+            "deployment": "vercel"
+        })
 
 # Production configuration
 app.config.update(
