@@ -11,7 +11,6 @@
 
 [🌟 **Live Demo**](https://srp-black.vercel.app) | [📚 **Documentation**](./DEPLOYMENT.md) | [🐛 **Report Issues**](https://github.com/Ahmed-KHI/SRP/issues) | [💬 **Join Community**](https://github.com/Ahmed-KHI/SRP/discussions)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Ahmed-KHI/SRP)
 
 </div>
 
