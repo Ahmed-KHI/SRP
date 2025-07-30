@@ -97,9 +97,6 @@ echo "GEMINI_API_KEY=your_api_key_here" > .env
 python main.py
 ```
 
-### **Option 3: One-Click Deploy**
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Ahmed-KHI/SRP)
-
 ---
 
 ## 🎥 **See It In Action**
