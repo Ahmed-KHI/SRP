@@ -1,0 +1,21 @@
+{
+  "filename": "restaurant-receipt.jpg",
+  "upload_time": "2025-07-30T00:34:24.098901",
+  "vendor": "CROWNE PLAZA",
+  "amount": 61.95,
+  "date": "2019-03-10",
+  "category": "Miscellaneous",
+  "tax_amount": 5.63,
+  "confidence_score": 0.95,
+  "confidence_percentage": 95.0,
+  "items": [
+    "Burrata",
+    "Pan de Coca",
+    "Solomillo a la Sal",
+    "100% Chocolate fondat",
+    "Agua 1/2",
+    "Copa Aphrodisiaque T.",
+    "Portal Reserva 30%"
+  ],
+  "description": "Receipt from CROWNE PLAZA"
+}

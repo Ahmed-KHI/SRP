@@ -1,0 +1,137 @@
+{
+  "Office Supplies": {
+    "keywords": [
+      "paper", "pen", "pencil", "stapler", "folder", "binder", "supplies",
+      "notebook", "clipboard", "envelope", "sticky", "tape", "scissors",
+      "ruler", "marker", "highlighter", "eraser", "correction"
+    ],
+    "vendors": [
+      "staples", "office depot", "best buy", "amazon", "walmart",
+      "target", "costco", "sam's club", "officeworks"
+    ],
+    "description": "General office supplies and materials",
+    "account_code": "6100",
+    "typical_amount_range": [1, 500]
+  },
+  "Meals & Entertainment": {
+    "keywords": [
+      "restaurant", "food", "lunch", "dinner", "coffee", "catering",
+      "meal", "breakfast", "snack", "beverage", "drink", "bar",
+      "pizza", "sandwich", "salad", "fast food", "takeout"
+    ],
+    "vendors": [
+      "mcdonalds", "starbucks", "subway", "dominos", "pizza hut",
+      "burger king", "taco bell", "kfc", "chipotle", "panera"
+    ],
+    "description": "Business meals and entertainment expenses",
+    "account_code": "6200",
+    "typical_amount_range": [5, 200],
+    "special_rules": {
+      "requires_approval_if_over": 75,
+      "requires_business_purpose": true
+    }
+  },
+  "Travel": {
+    "keywords": [
+      "hotel", "flight", "airline", "uber", "taxi", "gas", "parking",
+      "rental", "car", "lodging", "accommodation", "airport", "train",
+      "bus", "toll", "mileage", "transportation"
+    ],
+    "vendors": [
+      "hilton", "marriott", "delta", "united", "american airlines",
+      "uber", "lyft", "hertz", "enterprise", "shell", "exxon", "bp"
+    ],
+    "description": "Travel and transportation expenses",
+    "account_code": "6300",
+    "typical_amount_range": [10, 2000]
+  },
+  "Technology": {
+    "keywords": [
+      "computer", "software", "laptop", "phone", "tablet", "tech",
+      "hardware", "monitor", "keyboard", "mouse", "printer", "cable",
+      "charger", "headphone", "speaker", "webcam", "microphone"
+    ],
+    "vendors": [
+      "apple", "microsoft", "amazon", "best buy", "dell", "hp",
+      "lenovo", "adobe", "google", "zoom", "slack"
+    ],
+    "description": "Technology equipment and software",
+    "account_code": "6400",
+    "typical_amount_range": [25, 5000]
+  },
+  "Marketing": {
+    "keywords": [
+      "advertising", "marketing", "promotion", "print", "design",
+      "brochure", "flyer", "banner", "signage", "website", "seo",
+      "social media", "campaign", "ad", "graphic"
+    ],
+    "vendors": [
+      "facebook", "google", "adobe", "canva", "vistaprint",
+      "fedex office", "kinko's"
+    ],
+    "description": "Marketing and advertising expenses",
+    "account_code": "6500",
+    "typical_amount_range": [50, 10000]
+  },
+  "Utilities": {
+    "keywords": [
+      "electric", "water", "gas", "internet", "phone", "utility",
+      "electricity", "power", "heating", "cooling", "wifi", "broadband",
+      "cellular", "landline", "cable", "trash", "sewer"
+    ],
+    "vendors": [
+      "verizon", "att", "comcast", "spectrum", "cox", "centurylink",
+      "pacific gas", "edison", "pg&e"
+    ],
+    "description": "Utility bills and services",
+    "account_code": "6600",
+    "typical_amount_range": [25, 1000]
+  },
+  "Professional Services": {
+    "keywords": [
+      "consultant", "legal", "accounting", "professional", "service",
+      "attorney", "lawyer", "cpa", "tax", "audit", "advisory",
+      "consulting", "contractor", "freelancer"
+    ],
+    "vendors": [
+      "law", "cpa", "consulting", "deloitte", "pwc", "kpmg", "ey"
+    ],
+    "description": "Professional services and consulting",
+    "account_code": "6700",
+    "typical_amount_range": [100, 50000]
+  },
+  "Insurance": {
+    "keywords": [
+      "insurance", "premium", "policy", "coverage", "liability",
+      "workers comp", "health", "dental", "vision", "auto", "property"
+    ],
+    "vendors": [
+      "state farm", "allstate", "geico", "progressive", "farmers",
+      "aetna", "blue cross", "humana", "cigna"
+    ],
+    "description": "Insurance premiums and coverage",
+    "account_code": "6800",
+    "typical_amount_range": [50, 5000]
+  },
+  "Maintenance & Repairs": {
+    "keywords": [
+      "repair", "maintenance", "fix", "service", "cleaning", "janitorial",
+      "hvac", "plumbing", "electrical", "painting", "landscaping"
+    ],
+    "vendors": [
+      "home depot", "lowes", "ace hardware", "local contractor"
+    ],
+    "description": "Building and equipment maintenance",
+    "account_code": "6900",
+    "typical_amount_range": [25, 2000]
+  },
+  "Miscellaneous": {
+    "keywords": [
+      "misc", "other", "various", "general", "sundry", "incidental"
+    ],
+    "vendors": [],
+    "description": "Other business expenses",
+    "account_code": "6999",
+    "typical_amount_range": [1, 1000]
+  }
+}

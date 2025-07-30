@@ -1,0 +1,40 @@
+# Smart Receipt Processor - Production Dependencies
+
+# Core Web Framework
+flask>=3.0.0
+werkzeug>=3.0.0
+gunicorn>=21.2.0
+
+# AI and Vision Libraries
+google-generativeai>=0.3.0
+Pillow>=10.0.0
+
+# Data Processing and Analysis
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# Environment and Configuration
+python-dotenv>=1.0.0
+requests>=2.31.0
+
+# Optional: Full Framework Dependencies (uncomment if needed)
+# pytesseract>=0.3.10
+# opencv-python>=4.8.0
+# pdf2image>=1.16.0
+# openai>=1.12.0
+# numpy>=1.24.0
+
+# QuickBooks Integration
+intuitlib>=1.2.4
+python-quickbooks>=0.8.0
+
+# Utilities
+pathlib2>=2.3.7
+typing-extensions>=4.7.0
+pydantic>=2.0.0
+
+# Development Dependencies
+pytest>=7.4.0
+black>=23.7.0
+flake8>=6.0.0
+mypy>=1.5.0

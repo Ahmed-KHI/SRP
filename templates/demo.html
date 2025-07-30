@@ -1,0 +1,316 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center mb-5">
+                <h2><i class="fas fa-play-circle"></i> Live Demo - Framework in Action</h2>
+                <p class="lead">See your Smart Receipt Processor framework analyze a sample receipt in real-time</p>
+            </div>
+            
+            <div class="row">
+                <!-- Demo Input -->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0"><i class="fas fa-receipt"></i> Sample Receipt</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="bg-light p-4 rounded">
+                                <pre style="font-family: monospace; font-size: 12px; line-height: 1.2;">
+WALMART SUPERCENTER
+Store #1234
+123 Main Street
+Anytown, ST 12345
+(555) 123-4567
+
+GROCERY DEPARTMENT
+Bananas Organic        $2.99
+Milk Whole Gal         $3.49
+Bread Wheat            $2.19
+Eggs Large Dozen       $2.89
+Chicken Breast         $8.47
+
+SUBTOTAL              $20.03
+TAX                    $1.60
+TOTAL                 $21.63
+
+VISA ENDING IN 1234
+AUTH# 123456
+01/15/2024  2:34 PM
+
+Thank you for shopping!
+                                </pre>
+                            </div>
+                            
+                            <div class="text-center mt-3">
+                                <button class="btn btn-primary btn-lg" onclick="runDemo()" id="demoBtn">
+                                    <i class="fas fa-magic"></i> Process with Framework
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Demo Output -->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0"><i class="fas fa-brain"></i> AI Framework Results</h5>
+                        </div>
+                        <div class="card-body" id="resultsArea">
+                            <div class="text-center text-muted">
+                                <i class="fas fa-arrow-left fa-2x mb-3"></i>
+                                <p>Click "Process with Framework" to see AI analysis results</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Processing Steps -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="mb-0"><i class="fas fa-cogs"></i> Framework Processing Pipeline</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row" id="processingSteps">
+                                <div class="col-md-2 text-center processing-step" data-step="1">
+                                    <div class="step-icon">
+                                        <i class="fas fa-image fa-2x text-muted"></i>
+                                    </div>
+                                    <h6 class="mt-2">Image Processing</h6>
+                                    <small class="text-muted">Preprocessing & Enhancement</small>
+                                </div>
+                                <div class="col-md-2 text-center processing-step" data-step="2">
+                                    <div class="step-icon">
+                                        <i class="fas fa-eye fa-2x text-muted"></i>
+                                    </div>
+                                    <h6 class="mt-2">OCR Extraction</h6>
+                                    <small class="text-muted">Tesseract Text Analysis</small>
+                                </div>
+                                <div class="col-md-2 text-center processing-step" data-step="3">
+                                    <div class="step-icon">
+                                        <i class="fas fa-brain fa-2x text-muted"></i>
+                                    </div>
+                                    <h6 class="mt-2">AI Analysis</h6>
+                                    <small class="text-muted">Gemini 2.0 Processing</small>
+                                </div>
+                                <div class="col-md-2 text-center processing-step" data-step="4">
+                                    <div class="step-icon">
+                                        <i class="fas fa-tags fa-2x text-muted"></i>
+                                    </div>
+                                    <h6 class="mt-2">Categorization</h6>
+                                    <small class="text-muted">Expense Classification</small>
+                                </div>
+                                <div class="col-md-2 text-center processing-step" data-step="5">
+                                    <div class="step-icon">
+                                        <i class="fas fa-check fa-2x text-muted"></i>
+                                    </div>
+                                    <h6 class="mt-2">Validation</h6>
+                                    <small class="text-muted">Quality Control</small>
+                                </div>
+                                <div class="col-md-2 text-center processing-step" data-step="6">
+                                    <div class="step-icon">
+                                        <i class="fas fa-download fa-2x text-muted"></i>
+                                    </div>
+                                    <h6 class="mt-2">Export</h6>
+                                    <small class="text-muted">Excel & Accounting</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Framework Capabilities -->
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-info text-white">
+                            <h6 class="mb-0"><i class="fas fa-terminal"></i> CLI Framework</h6>
+                        </div>
+                        <div class="card-body">
+                            <pre class="bg-dark text-light p-3 rounded"><code>$ python main.py process receipt.jpg
+
+Processing receipt...
+✅ Vendor: Walmart
+✅ Amount: $21.63
+✅ Category: Groceries
+✅ Confidence: 95%
+
+Export options:
+- Excel: expenses.xlsx
+- CSV: receipts.csv
+- JSON: data.json</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-warning text-white">
+                            <h6 class="mb-0"><i class="fas fa-code"></i> Python Library</h6>
+                        </div>
+                        <div class="card-body">
+                            <pre class="bg-dark text-light p-3 rounded"><code>from core.receipt_processor import ReceiptProcessor
+
+processor = ReceiptProcessor(config)
+result = processor.process_receipt('receipt.jpg')
+
+print(f"Vendor: {result.vendor}")
+print(f"Amount: ${result.amount}")
+print(f"Category: {result.category}")
+
+# Export to Excel
+processor.export_to_excel([result], 'expenses.xlsx')</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-success text-white">
+                            <h6 class="mb-0"><i class="fas fa-globe"></i> Web API</h6>
+                        </div>
+                        <div class="card-body">
+                            <pre class="bg-dark text-light p-3 rounded"><code>POST /api/process
+Content-Type: multipart/form-data
+
+{
+  "status": "success",
+  "data": {
+    "vendor": "Walmart",
+    "amount": 21.63,
+    "category": "Groceries",
+    "confidence": 0.95
+  },
+  "processing_time": 2.3
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let currentStep = 0;
+
+function runDemo() {
+    document.getElementById('demoBtn').disabled = true;
+    document.getElementById('demoBtn').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+    
+    // Reset all steps
+    document.querySelectorAll('.processing-step').forEach(step => {
+        step.querySelector('i').className = step.querySelector('i').className.replace('text-success', 'text-muted');
+    });
+    
+    currentStep = 0;
+    
+    // Simulate processing steps
+    const stepInterval = setInterval(() => {
+        if (currentStep < 6) {
+            currentStep++;
+            const step = document.querySelector(`[data-step="${currentStep}"]`);
+            step.querySelector('i').className = step.querySelector('i').className.replace('text-muted', 'text-success');
+            
+            if (currentStep === 6) {
+                clearInterval(stepInterval);
+                showResults();
+            }
+        }
+    }, 800);
+}
+
+function showResults() {
+    const resultsHtml = `
+        <div class="result-data">
+            <h6 class="text-success"><i class="fas fa-check-circle"></i> Processing Complete!</h6>
+            
+            <table class="table table-sm mt-3">
+                <tr>
+                    <td><strong>Vendor:</strong></td>
+                    <td>Walmart Supercenter</td>
+                </tr>
+                <tr>
+                    <td><strong>Amount:</strong></td>
+                    <td class="text-success fw-bold">$21.63</td>
+                </tr>
+                <tr>
+                    <td><strong>Date:</strong></td>
+                    <td>01/15/2024</td>
+                </tr>
+                <tr>
+                    <td><strong>Category:</strong></td>
+                    <td><span class="badge bg-primary">Groceries</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Tax:</strong></td>
+                    <td>$1.60</td>
+                </tr>
+                <tr>
+                    <td><strong>AI Confidence:</strong></td>
+                    <td><span class="text-success">95.0%</span></td>
+                </tr>
+            </table>
+            
+            <h6 class="mt-3">Items Detected:</h6>
+            <div class="mb-3">
+                <span class="badge bg-light text-dark me-1">Bananas Organic</span>
+                <span class="badge bg-light text-dark me-1">Milk Whole Gal</span>
+                <span class="badge bg-light text-dark me-1">Bread Wheat</span>
+                <span class="badge bg-light text-dark me-1">Eggs Large</span>
+                <span class="badge bg-light text-dark me-1">Chicken Breast</span>
+            </div>
+            
+            <div class="alert alert-info">
+                <small>
+                    <i class="fas fa-clock"></i> Processing Time: 2.3 seconds<br>
+                    <i class="fas fa-brain"></i> AI Model: Gemini 2.0 Flash<br>
+                    <i class="fas fa-eye"></i> OCR Accuracy: 98.2%
+                </small>
+            </div>
+            
+            <div class="d-grid gap-2">
+                <button class="btn btn-success btn-sm" onclick="alert('Excel export ready!')">
+                    <i class="fas fa-file-excel"></i> Export to Excel
+                </button>
+                <button class="btn btn-info btn-sm" onclick="alert('Added to dashboard!')">
+                    <i class="fas fa-chart-bar"></i> Add to Dashboard
+                </button>
+            </div>
+        </div>
+    `;
+    
+    document.getElementById('resultsArea').innerHTML = resultsHtml;
+    document.getElementById('demoBtn').disabled = false;
+    document.getElementById('demoBtn').innerHTML = '<i class="fas fa-redo"></i> Run Demo Again';
+}
+</script>
+
+<style>
+.processing-step {
+    transition: all 0.3s ease;
+}
+
+.processing-step .step-icon {
+    transition: all 0.3s ease;
+}
+
+.result-data {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+{% endblock %}

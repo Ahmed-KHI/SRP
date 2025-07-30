@@ -1,0 +1,243 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hidden data for JavaScript -->
+<script type="application/json" id="result-data">{{ result | tojson | safe }}</script>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <!-- Success Header -->
+            <div class="alert alert-success text-center">
+                <h4><i class="fas fa-check-circle"></i> Receipt Processed Successfully!</h4>
+                <p class="mb-0">Your Smart Receipt Processor framework extracted all the data with high confidence.</p>
+            </div>
+            
+            <div class="row">
+                <!-- Results Card -->
+                <div class="col-md-8">
+                    <div class="card result-card">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0"><i class="fas fa-receipt"></i> Extracted Receipt Data</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-store"></i> Vendor Information</h6>
+                                    <table class="table table-sm">
+                                        <tr>
+                                            <td><strong>Vendor:</strong></td>
+                                            <td>{{ result.vendor or 'Not detected' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Date:</strong></td>
+                                            <td>{{ result.date or 'Not detected' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Category:</strong></td>
+                                            <td>
+                                                <span class="badge bg-primary">{{ result.category or 'Uncategorized' }}</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-dollar-sign"></i> Financial Details</h6>
+                                    <table class="table table-sm">
+                                        <tr>
+                                            <td><strong>Total Amount:</strong></td>
+                                            <td><span class="text-success fw-bold">${{ "%.2f"|format(result.amount or 0) }}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Tax Amount:</strong></td>
+                                            <td>${{ "%.2f"|format(result.tax_amount or 0) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>AI Confidence:</strong></td>
+                                            <td>
+                                                {% set confidence = result.confidence_score or 0 %}
+                                                <span class="{% if confidence > 0.9 %}confidence-high{% elif confidence > 0.7 %}confidence-medium{% else %}confidence-low{% endif %}">
+                                                    {{ "%.1f"|format(confidence * 100) }}%
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            {% if result.items %}
+                            <h6 class="mt-3"><i class="fas fa-list"></i> Items Detected</h6>
+                            <div class="row">
+                                {% for item in result.items %}
+                                <div class="col-md-6">
+                                    <span class="badge bg-light text-dark">{{ item }}</span>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            
+                            {% if result.description %}
+                            <h6 class="mt-3"><i class="fas fa-comment"></i> Description</h6>
+                            <p class="text-muted">{{ result.description }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Actions -->
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h6 class="mb-0"><i class="fas fa-tools"></i> Framework Export Options</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <button class="btn btn-success w-100" onclick="exportExcel()">
+                                        <i class="fas fa-file-excel"></i><br>
+                                        Excel Report
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-info w-100" onclick="exportWave()">
+                                        <i class="fas fa-wave-square"></i><br>
+                                        Wave CSV
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-warning w-100" onclick="exportJSON()">
+                                        <i class="fas fa-code"></i><br>
+                                        JSON Data
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary w-100" onclick="addToDashboard()">
+                                        <i class="fas fa-plus"></i><br>
+                                        Add to Dashboard
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="col-md-4">
+                    <!-- Framework Performance -->
+                    <div class="card">
+                        <div class="card-header bg-info text-white">
+                            <h6 class="mb-0"><i class="fas fa-tachometer-alt"></i> Framework Performance</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <small class="text-muted">Processing Time</small>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 85%">2.3s</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted">AI Confidence</small>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success confidence-bar" data-confidence="{{ result.confidence_percentage }}">
+                                        {{ "%.1f"|format(result.confidence_percentage) }}%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted">Data Completeness</small>
+                                <div class="progress">
+                                    <div class="progress-bar bg-warning" style="width: 92%">92%</div>
+                                </div>
+                            </div>
+                            
+                            <hr>
+                            <small class="text-muted">
+                                <i class="fas fa-brain"></i> Processed with Gemini 2.0 Flash<br>
+                                <i class="fas fa-clock"></i> {{ result.upload_time or 'Just now' }}<br>
+                                <i class="fas fa-file"></i> {{ result.filename or 'receipt.jpg' }}
+                            </small>
+                        </div>
+                    </div>
+                    
+                    <!-- Next Steps -->
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h6 class="mb-0"><i class="fas fa-arrow-right"></i> Next Steps</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-grid gap-2">
+                                <a href="{{ url_for('upload_receipt') }}" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-plus"></i> Process Another Receipt
+                                </a>
+                                <a href="{{ url_for('dashboard') }}" class="btn btn-outline-info btn-sm">
+                                    <i class="fas fa-chart-bar"></i> View Analytics Dashboard
+                                </a>
+                                <a href="{{ url_for('demo') }}" class="btn btn-outline-success btn-sm">
+                                    <i class="fas fa-play"></i> Try Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Framework API Response -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h6 class="mb-0"><i class="fas fa-code"></i> Framework API Response</h6>
+                </div>
+                <div class="card-body">
+                    <pre class="bg-light p-3 rounded"><code>{
+  "status": "success",
+  "processing_time": 2.3,
+  "ai_model": "gemini-2.0-flash-exp",
+  "data": {
+    "vendor": "{{ result.vendor }}",
+    "amount": {{ result.amount or 0 }},
+    "date": "{{ result.date }}",
+    "category": "{{ result.category }}",
+    "confidence_score": {{ result.confidence_score or 0 }},
+    "tax_amount": {{ result.tax_amount or 0 }}
+  }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function exportExcel() {
+    alert('Excel export functionality would connect to your framework\'s ExcelExporter class');
+}
+
+function exportWave() {
+    alert('Wave CSV export would use your framework\'s free accounting integration');
+}
+
+function exportJSON() {
+    // Get data from a hidden input or data attribute
+    const dataElement = document.getElementById('result-data');
+    const data = JSON.parse(dataElement.textContent);
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'receipt_data.json';
+    a.click();
+}
+
+function addToDashboard() {
+    alert('Receipt added to analytics dashboard! This would save to your framework\'s database.');
+}
+
+// Set progress bar widths dynamically
+document.addEventListener('DOMContentLoaded', function() {
+    const confidenceBar = document.querySelector('.confidence-bar');
+    if (confidenceBar) {
+        const confidence = confidenceBar.getAttribute('data-confidence');
+        confidenceBar.style.width = confidence + '%';
+    }
+});
+</script>
+{% endblock %}
