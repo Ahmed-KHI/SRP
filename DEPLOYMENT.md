@@ -158,4 +158,4 @@ Most platforms provide built-in monitoring dashboards.
 
 ---
 
-🎉 **Your Smart Receipt Processor is now ready for production!**
+🎉 **Smart Receipt Processor is now ready for production!**
