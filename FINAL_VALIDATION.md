@@ -138,7 +138,7 @@ smart-receipt-processor/
 
 ## 🚀 Ready for Launch!
 
-Your Smart Receipt Processor is **production-ready** and validated for GitHub upload. The system includes:
+Smart Receipt Processor is **production-ready** and validated for GitHub upload. The system includes:
 
 1. **Complete AI Framework** - 25+ modules for intelligent receipt processing
 2. **Professional Web Interface** - Modern Bootstrap UI with REST API
