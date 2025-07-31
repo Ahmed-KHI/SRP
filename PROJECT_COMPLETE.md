@@ -2,7 +2,7 @@
 
 ## ✅ What We've Built
 
-You now have a **complete AI-powered finance automation system** designed specifically for office environments. This system eliminates manual data entry and provides intelligent expense categorization.
+A **complete AI-powered finance automation system** designed specifically for office environments. This system eliminates manual data entry and provides intelligent expense categorization.
 
 ## 🏗️ Architecture Overview
 
@@ -213,7 +213,7 @@ python demo.py
 
 ## 🎊 Congratulations!
 
-You now have a **production-ready AI-powered finance automation system** that will:
+A **production-ready AI-powered finance automation system** that will:
 
 ✅ **Save hours of manual work** every week  
 ✅ **Reduce data entry errors** by 95%+  
